@@ -15,3 +15,6 @@ exports.create = (cubeData) => {
 exports.getAll = () => {
   return cubes.slice();
 };
+exports.getOne = (cubeId) => {
+  return cubes.find((x) => x.id == cubeId);
+};
