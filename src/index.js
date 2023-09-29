@@ -16,5 +16,8 @@ handlebarsConfig(app);
 //Routes
 app.use(homeController);
 app.use("/cubes", cubeController);
+app.use("*", (req, res) => {
+  res.redirect("/404");
+});
 
 app.listen(PORT, () => console.log(`Server is runing on port ${PORT}...`));
