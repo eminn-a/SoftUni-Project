@@ -22,6 +22,9 @@ router.post("/create", (req, res) => {
 router.get("/:cubeId/details", (req, res) => {
   const id = req.params.cubeId;
   const cube = cubeManager.getOne(id);
+  if (!cube) {
+    return res.redirect("/404");
+  }
   res.render("details", { ...cube });
 });
 
