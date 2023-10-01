@@ -2,22 +2,16 @@ const express = require("express");
 
 const expressConfig = require("./config/expressConfig");
 const handlebarsConfig = require("./config/handlebarsConfig");
-const homeController = require("./controllers/homeController");
-const cubeController = require("../src/controllers/cubeController");
+const routs = require("./routes");
+
+const dbConnect = require("./config/dbConfig");
 
 const app = express();
 const PORT = 5000;
 
-//Express congig
 expressConfig(app);
-//Handlebars confing
 handlebarsConfig(app);
 
-//Routes
-app.use(homeController);
-app.use("/cubes", cubeController);
-app.use("*", (req, res) => {
-  res.redirect("/404");
-});
+app.use(routs);
 
 app.listen(PORT, () => console.log(`Server is runing on port ${PORT}...`));
