@@ -59,9 +59,27 @@ router.post("/:cubeId/delete", async (req, res) => {
   res.redirect("/");
 });
 
+function getDifficultyOptionViewData(difficultyLevel) {
+  const titles = [
+    "Very Easy",
+    "Easy",
+    "Medium (Standart 3x3",
+    "Intermediate",
+    "Expert",
+    "Hardcore",
+  ];
+  const option = titles.map((title, index) => ({
+    title: `${index + 1} - ${title}`,
+    value: index + 1,
+    selected: Number(difficultyLevel) == index + 1,
+  }));
+  return option;
+}
+
 router.get("/:cubeId/edit", async (req, res) => {
   const cube = await cubeManager.getOne(req.params.cubeId).lean();
-  res.render("cube/edit", { cube });
+  const option = getDifficultyOptionViewData(cube.difficultyLevel);
+  res.render("cube/edit", { cube, option });
 });
 
 router.post("/:cubeId/edit", async (req, res) => {
