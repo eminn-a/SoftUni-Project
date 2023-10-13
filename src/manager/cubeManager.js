@@ -10,6 +10,8 @@ exports.create = async (cubeData) => {
 
 exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId);
 
+exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
+
 exports.getAll = async (search, from, to) => {
   let result = await Cube.find().lean();
   //TODO: use mongoose to filter in the db
