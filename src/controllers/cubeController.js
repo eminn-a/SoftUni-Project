@@ -69,7 +69,6 @@ router.get("/:cubeId/edit", async (req, res) => {
 
 router.post("/:cubeId/edit", async (req, res) => {
   const cubeData = req.body;
-  console.log(cubeData);
   await cubeManager.update(req.params.cubeId, cubeData);
 
   res.redirect(`/cubes/${req.params.cubeId}/details`);
