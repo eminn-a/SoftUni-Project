@@ -51,8 +51,9 @@ router.post("/:cubeId/attach-accessory", async (req, res) => {
 
 router.get("/:cubeId/delete", async (req, res) => {
   const cube = await cubeManager.getOne(req.params.cubeId).lean();
+  const option = getDifficultyOptionViewData(cube.difficultyLevel);
 
-  res.render("cube/delete", { cube });
+  res.render("cube/delete", { cube, option });
 });
 
 router.post("/:cubeId/delete", async (req, res) => {
