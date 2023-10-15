@@ -30,8 +30,6 @@ router.get("/:cubeId/details", async (req, res) => {
     return res.redirect("/404");
   }
   const isOwner = cube.owner?.toString() === req.user?._id;
-
-  console.log(isOwner);
   res.render("cube/details", { ...cube, isOwner });
 });
 
