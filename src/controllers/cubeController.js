@@ -77,3 +77,20 @@ router.post("/:cubeId/edit", async (req, res) => {
 });
 
 module.exports = router;
+
+function getDifficultyOptionViewData(difficultyLevel) {
+  const titles = [
+    "Very Easy",
+    "Easy",
+    "Medium (Standart 3x3",
+    "Intermediate",
+    "Expert",
+    "Hardcore",
+  ];
+  const option = titles.map((title, index) => ({
+    title: `${index + 1} - ${title}`,
+    value: index + 1,
+    selected: Number(difficultyLevel) == index + 1,
+  }));
+  return option;
+}
